@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewBag.Title = "View";
+    Layout = null;
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+    <!------ Include the above in your HEAD tag ---------->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Kontakt</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.css">
+
+    <link href="~/Content/Contact.css" rel="stylesheet">
+</head>
+<body>
+    @Html.Partial("_NavBar")
+    <!--ucitava sve iz baze i ubacuje fajl u Resources-->
+    <div class="klasaDiv">
+        @using (Html.BeginForm("AddPoruka", "Poruka", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div id="addbox" style=" margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                <div class="panel panel-info">
+
+                    <div class="panel-body">
+                        <form method="post" action=".">
+                            <input type='hidden' name='csrfmiddlewaretoken' value='XFe2rTYl9WOpV8U6X5CfbIuOZOELJ97S' />
+
+
+                            <div class="form-horizontal" method="post">
+                                <input type='hidden' name='csrfmiddlewaretoken' value='XFe2rTYl9WOpV8U6X5CfbIuOZOELJ97S' />
+
+                                <div id="div_id_naslov" class="form-group required">
+                                    <label for="id_naslov" class="control-label col-md-4  requiredField"> Naslov poruke<span class="asteriskField">*</span> </label>
+                                    <div class="controls col-md-8 ">
+                                        <input class="input-md  textinput textInput form-control" id="id_naslov" maxlength="50" name="naslov"  style="margin-bottom: 10px" type="text" />
+                                    </div>
+                                </div>
+                                <div id="div_id_email" class="form-group required">
+                                    <label for="id_email" class="control-label col-md-4  requiredField"> Email<span class="asteriskField">*</span> </label>
+                                    <div class="controls col-md-8 ">
+                                        <input class="input-md textinput form-control" id="id_email" name="emailKorisnika" style="margin-bottom: 10px" type="text" />
+                                    </div>
+                                </div>
+                                <div id="div_id_sadrzajPoruke" class="form-group required">
+                                    <label for="id_sadrzajPoruke" class="control-label col-md-4  requiredField">Sadrzaj poruke<span class="asteriskField">*</span> </label>
+                                    <div class="controls col-md-8 ">
+                                        <textarea class= "input-md textinput textInput form-control" id="id_sadrzajPoruke" name="sadrzajPoruke" style="height: 150px; margin-bottom: 10px" type="text" ></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="aab controls col-md-4 "></div>
+                                    <div class="controls col-md-8 ">
+                                        <input type="submit" name="addPoruka" value="Posaljite poruku" class="btn-info" id="submitPoruka" />
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+</body>
+</html>
+

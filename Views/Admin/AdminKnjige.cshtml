@@ -1,0 +1,78 @@
+﻿
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Knjige</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.css">
+
+    <link href="~/Content/Blanket.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+</head>
+<body>
+
+    @Html.Partial("_NavBarOut")
+    <div class="myclass">
+        @using (Html.BeginForm("AdminKnjige", "Admin", FormMethod.Get))
+        {
+            @Html.TextBox("pretraga")<input type="submit" value="Pretrazi" />
+
+        }
+        @using (Html.BeginForm("AdminKnjige", "Admin"))
+        {
+            <input type="submit" value="Obrisi filter" />
+        }
+        @using (Html.BeginForm("AdminAddKnjiga", "Admin", FormMethod.Get))
+        {
+            <input type="submit" value="Dodaj knjigu" />
+        }
+    </div>
+    <table class="table table-hover mytable">
+        <thead>
+            <tr>
+                <th>Naziv knjige</th>
+                <th>Autor</th>
+                <th>Opis</th>
+                <th>Ocena</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var v in ViewBag.knjige)
+            {
+                <tr>
+                    <td><a href="~/Resources/@v.nazivFajla">@v.predmet</a></td>
+                    <td>@v.autor</td>
+                    <td>@v.opis</td>
+                    <td>@v.ocena</td>
+                    <td><a href="~/Resources/@v.nazivFajla" download="@v.nazivFajla">Preuzmi</a></td>
+                    
+				<td>
+                    <a href="@Url.Action("AdminUpdateKnjiga", "Admin", new {id = v.id})" data-toggle="tooltip" title="Azuriraj"> <span class="fa fa-edit"></span></a>
+                <td>
+                    <a href="@Url.Action("DeleteKnjiga", "Admin", new {id = v.id})" data-toggle="tooltip" title="Obrisi"> <span class="fa fa-trash"></span></a>
+                </td>
+				
+                <td><a href="@Url.Action("AdminAboutKnjiga", "Admin", new {id = v.id})" data-toggle="tooltip" title="Pogledaj komentare"><span class="fa fa-commenting-o"></span></a></td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.js"></script>
+
+</body>
+</html>

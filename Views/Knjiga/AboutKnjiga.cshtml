@@ -1,0 +1,249 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap 4 Blog Post Comments Section Design</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<style>
+.comments-details button.btn.dropdown-toggle,
+.comments-details .total-comments {
+    font-size: 18px;
+    font-weight: 500;
+    color: #5e5e5e;
+}
+.comments-details {
+    padding: 15px 15px;
+}
+.comments .comments .dropdown,
+.comments .dropup {
+    position: relative;
+}
+.comments button {
+    background-color: transparent;
+    border: none;
+}
+.comments .comment-box {
+    width: 100%;
+    float: left;
+    height: 100%;
+    background-color: #FAFAFA;
+    padding: 10px 10px 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+.comments .add-comment {
+    background-color: transparent;
+    border: none;
+    position: relative;
+    margin-bottom: 50px;
+}
+.comments .commenter-pic {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    border-radius: 100%;
+    border: 2px solid #fff;
+    overflow: hidden;
+    background-color: #fff;
+}
+.comments .add-comment .commenter-name {
+    width: 100%;
+    padding-left: 75px;
+    position: absolute;
+    top: 20px;
+    left: 0px;
+}
+.comments .add-comment input {
+    border-top: 0px;
+    border-bottom: 1px solid #ccc;
+    border-left: 0px;
+    border-right: 0px;
+    outline: 0px;
+    box-shadow: none;
+    border-radius: 0;
+    width: 100%;
+    padding: 0;
+    font-weight: normal;
+}
+.comments .add-comment input:focus {
+    border-color: #03a9f4;
+    border-width: 2px;
+}
+.comments .add-comment button[type=submit] {
+    background-color: #03a9f4;
+    color: #fff;
+    margin-right: 0px;
+}
+.comments .add-comment button {
+    background-color: #f5f5f5;
+    margin: 10px 5px;
+    font-size: 14px;
+    text-transform: uppercase;
+    float: right;
+}
+.comments .commenter-name .comment-time {
+    font-weight: normal;
+    margin-left: 8px;
+    font-size: 15px;
+}
+.comments p.comment-txt {
+    font-size: 15px;
+    border-bottom: 1px solid #ddd;
+    padding: 0px 0px 15px;
+}
+.comments .commenter-name {
+    display: inline-block;
+    position: relative;
+    top: -20px;
+    left: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+.comments .comment-meta {
+    font-size: 14px;
+    color: #333;
+    padding: 2px 5px 0px;
+    line-height: 20px;
+    float: right;
+}
+.comments .reply-box {
+    display: none;
+}
+.comments .replied {
+    background-color: #fff;
+    width: 95%;
+    float: right;
+    margin-top: 15px;
+}
+
+/*======Responsive CSS=======*/
+
+.comments .commenter-pic {
+    width: 40px;
+    height: 40px;
+}
+.comments .commenter-name a{
+  display: block;
+  padding-top: 15px;
+}
+.comments .commenter-name .comment-time{
+  display: block;
+  margin-left: 0px;
+}
+}
+</style>  
+</head>
+<body>
+    @model WebPlatforma.Entites.Komentar
+    @Html.Partial("_NavBar")
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+        <div class="comments">
+            <div class="comments-details">
+                <span class="total-comments comments-sort"></span>
+                <span class="dropdown">
+                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">Sortiraj po <span class="caret"></span></button>
+                    <div class="dropdown-menu">
+                        <a href="@Url.Action("AboutKnjiga", "Knjiga", new { id = ViewBag.dokument, sort = "najnoviji"})">Najnoviji komentari</a>
+                        <a href="@Url.Action("AboutKnjiga", "Knjiga", new { id = ViewBag.dokument, sort = "najpopularniji"})">Najpopularniji komentari</a>
+                    </div>
+                </span>
+            </div>
+
+            @using (Html.BeginForm("AddKomentar", "Komentar", FormMethod.Post))
+            {
+                <div class="comment-box add-comment">
+                    <span class="commenter-pic">
+                        <img src="~/Resources/user2.png" class="img-fluid">
+                    </span>
+                    <span class="commenter-name">
+                        <input type="text" placeholder="Unesite komentar" name="tekstKomentara">
+                        <input type="text" name="idKorisnika" hidden value="@ViewBag.korisnik">
+                        <input hidden name="dokument" value="@ViewBag.dokument">
+                        <button type="submit" class="btn btn-default">Dodaj komentar</button>
+                    </span>
+                </div>
+            }
+                @if (ViewBag.komentari != null)
+                {
+                    foreach (var v in ViewBag.komentari)
+                    {
+
+        <div class="comment-box">
+
+            <span class="commenter-name">
+                <a href="#">@v.imeKorisnika</a> <span class="comment-time">@v.vreme</span>
+            </span>
+            <p class="comment-txt more" >@v.tekstKomentara</p>
+            <div class="comment-meta">
+                <a href="@Url.Action("LikeKomentar", "Komentar", new { id = v.id})" data-toggle="tooltip" title="Svidja mi se"><span class="fa fa-thumbs-o-up" fill="currentColor"></span></a>
+                <button data-toggle="tooltip" class="comment-like">@v.ocena</button>
+                <button class="comment-reply reply-popup"><i class="fa fa-reply-all" aria-hidden="true"></i> Odgovori</button>
+            </div>
+
+            
+                <div class="comment-box add-comment reply-box">
+
+                    <span class="commenter-name">
+                       @using (Html.BeginForm("AddSubKomentar", "Komentar", FormMethod.Post))
+                       {
+                        <input type="text" placeholder="Unesite komentar" name="tekstKomentara">
+                        <input hidden name="glavniKomentar" value="@v.id">
+                        <button type="submit" class="btn btn-default">Odgovori</button>
+						}
+                        <button type="cancel" class="btn btn-default reply-popup">Izadji</button>
+                    </span>
+
+                </div>
+            
+
+            @foreach (var k in v.odgovori)
+            {
+                <div class="comment-box replied">
+                    
+                    <span class="commenter-name">
+                        <a href="#"></a> <span class="comment-time">@k.vreme</span>
+                    </span>
+                    <p class="comment-txt more">@k.tekstKomentara</p>
+                    <div class="comment-meta">
+					<a href="@Url.Action("LikeSubKomentar", "Komentar", new { id = @v.id, idPodKom = k.id})" data-toggle="tooltip" title="Svidja mi se"><span class="fa fa-thumbs-o-up" fill="currentColor"></span></a>
+                        <button class="comment-like"> @k.ocena</button>
+					<a href="@Url.Action("DislikeSubKomentar", "Komentar", new { id = @v.id, idPodKom = k.id})" data-toggle="tooltip" title="Svidja mi se"><span class="fa fa-thumbs-o-down" fill="currentColor"></span></a>
+                        <button class="comment-dislike">@k.negativnaOcena</button>
+                    </div>
+                </div>
+
+            }
+
+        </div>
+						
+						
+
+                    }
+                }
+				
+				
+            </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+
+
+<script>
+// Reply box popup JS
+$(document).ready(function(){
+    $(".reply-popup").click(function(){
+    $(".reply-box").toggle();
+  });
+});
+</script>

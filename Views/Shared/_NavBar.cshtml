@@ -1,0 +1,184 @@
+﻿<html>
+<body>
+	@using (Html.BeginForm("AdminHome", "Admin", FormMethod.Post))
+	{
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+			<div class="container">
+				<!--<img class="navbar-brand" src="~/Resources/logoSova.png" style="height: 30px" />-->
+				<a class="navbar-brand" href="Home">Platforma za ucenje</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarResponsive">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item active">
+							<a class="nav-link" href="https://localhost:44302/">
+								Pocetna
+								<span class="sr-only">(current)</span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="https://localhost:44302/Home/About">O nama</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="https://localhost:44302/Home/Contact">Kontakt</a>
+						</li>
+						<li class="nav-item">
+
+							<a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle mr-4">Uloguj se</a>
+							<div class="dropdown-menu action-form">
+								<form action="/examples/actions/confirmation.php" method="post">
+
+									<div class="form-group">
+										<input type="text" class="form-control" name="email" placeholder="Username" required="required">
+									</div>
+									<div class="form-group">
+										<input type="password" class="form-control" name="sifra" placeholder="Password" required="required">
+									</div>
+									<input type="submit" class="btn btn-primary btn-block" value="Login">
+									
+								</form>
+							</div>
+
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	}
+</body>
+</html>
+<style>
+body {
+	font-family: 'Varela Round', sans-serif;
+}
+.form-control {
+	box-shadow: none;
+	font-weight: normal;
+	font-size: 13px;
+}
+.navbar {
+	background: #fff;
+	padding-left: 16px;
+	padding-right: 16px;
+	border-bottom: 1px solid #dfe3e8;
+	border-radius: 0;
+}
+.nav-link img {
+	border-radius: 50%;
+	width: 36px;
+	height: 36px;
+	margin: -8px 0;
+	float: left;
+	margin-right: 10px;
+}
+.navbar .navbar-brand {
+	padding-left: 0;
+	font-size: 20px;
+	padding-right: 50px;
+}
+.navbar .navbar-brand b {
+	color: #33cabb;
+}
+.navbar .form-inline {
+	display: inline-block;
+}
+.navbar a {
+	color: #888;
+	font-size: 15px;
+}
+.navbar .sign-up-btn {
+	min-width: 110px;
+	max-height: 36px;
+}
+.navbar .dropdown-menu {
+	color: #999;
+	font-weight: normal;
+	border-radius: 1px;
+	border-color: #e5e5e5;
+	box-shadow: 0 2px 8px rgba(0,0,0,.05);
+}
+.navbar a, .navbar a:active {
+	color: #888;
+	padding: 8px 20px;
+	background: transparent;
+	line-height: normal;
+}
+.navbar .navbar-form {
+	border: none;
+}
+.navbar .action-form {
+	width: 280px;
+	padding: 20px;
+	left: auto;
+	right: 0;
+	font-size: 14px;
+}
+.navbar .action-form a {
+	color: #33cabb;
+	padding: 0 !important;
+	font-size: 14px;
+}
+.navbar .action-form .hint-text {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 13px;
+}
+.navbar .btn-primary, .navbar .btn-primary:active {
+	color: #fff;
+	background: #999 !important;
+	border: none;
+}
+.navbar .btn-primary:hover, .navbar .btn-primary:focus {
+	color: #fff;
+	background: #666 !important;
+}
+.navbar .social-btn .btn, .navbar .social-btn .btn:hover {
+	color: #fff;
+	margin: 0;
+	padding: 0 !important;
+	font-size: 13px;
+	border: none;
+	transition: all 0.4s;
+	text-align: center;
+	line-height: 34px;
+	width: 47%;
+	text-decoration: none;
+}
+
+.navbar .social-btn .btn i {
+	margin-right: 5px;
+	font-size: 16px;
+	position: relative;
+	top: 2px;
+}
+.or-seperator {
+	margin-top: 32px;
+	text-align: center;
+	border-top: 1px solid #e0e0e0;
+}
+.or-seperator b {
+	color: #666;
+	padding: 0 8px;
+	width: 30px;
+	height: 30px;
+	font-size: 13px;
+	text-align: center;
+	line-height: 26px;
+	background: #fff;
+	display: inline-block;
+	border: 1px solid #e0e0e0;
+	border-radius: 50%;
+	position: relative;
+	top: -15px;
+	z-index: 1;
+}
+.navbar .action-buttons .dropdown-toggle::after {
+	display: none;
+}
+.form-check-label input {
+	position: relative;
+	top: 1px;
+}
+
+</style>

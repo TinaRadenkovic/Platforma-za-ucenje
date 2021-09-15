@@ -1,0 +1,114 @@
+﻿
+@{
+    ViewBag.Title = "View";
+    Layout = null;
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+    <!------ Include the above in your HEAD tag ---------->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Blanketi</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.css">
+
+    <link href="~/Content/AddBlanket.css" rel="stylesheet">
+</head>
+<body>
+    @model WebPlatforma.Entites.Blanket
+    @Html.Partial("_NavBarOut")
+    <!--ucitava sve iz baze i ubacuje fajl u Resources-->
+    <div class="klasaDiv">
+        @using (Html.BeginForm("AdminUpdateBlanket", "Blanket", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+        <div id="addbox" style=" margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+            <div class="panel panel-info">
+
+                <div class="panel-body">
+                    <form method="post" action=".">
+                        <input type='hidden' name='csrfmiddlewaretoken' value='XFe2rTYl9WOpV8U6X5CfbIuOZOELJ97S' />
+
+
+                        <div class="form-horizontal" method="post">
+                            <input type='hidden' name='csrfmiddlewaretoken' value='XFe2rTYl9WOpV8U6X5CfbIuOZOELJ97S' />
+                            <div id="div_id_select" class="form-group required">
+                                <label for="id_select" class="control-label col-md-4  requiredField"> Tip blanketa<span class="asteriskField">*</span> </label>
+                                <div class="controls col-md-8 " style="margin-bottom: 10px">
+                                    <label class="radio-inline"><input type="radio" checked="checked" name="tipBlanketa" id="id_select_1" value="Pismeni" style="margin-bottom: 10px">Pismeni</label>
+                                    <label class="radio-inline"> <input type="radio" name="tipBlanketa" id="id_select_2" value="Usmeni" style="margin-bottom: 10px">Usmeni </label>
+                                </div>
+                            </div>
+
+                            <div id="div_id_predmet" class="form-group required">
+                                <label for="id_predmet" class="control-label col-md-4  requiredField"> Predmet<span class="asteriskField">*</span> </label>
+                                <div class="controls col-md-8 ">
+                                    <input class="input-md  textinput textInput form-control" id="id_predmet" maxlength="50" name="predmet" value="@ViewBag.blanket.predmet" style="margin-bottom: 10px" type="text" />
+                                </div>
+                            </div>
+                            <div id="div_id_godina" class="form-group required">
+                                <label for="id_godina" class="control-label col-md-4  requiredField"> Godina<span class="asteriskField">*</span> </label>
+                                <div class="controls col-md-8 ">
+                                    <input class="input-md textinput form-control" id="id_godina" name="godina" value="@ViewBag.blanket.godina" style="margin-bottom: 10px" type="text" />
+                                </div>
+                            </div>
+                            <div id="div_id_rok" class="form-group required">
+                                <label for="id_rok" class="control-label col-md-4  requiredField">Rok<span class="asteriskField">*</span> </label>
+                                <div class="controls col-md-8 ">
+                                    <input class="input-md textinput textInput form-control" id="id_rok" name="rok" value="@ViewBag.blanket.rok" style="margin-bottom: 10px" type="text" />
+                                </div>
+                            </div>
+
+                            <div id="div_id_opis" class="form-group required">
+                                <label for="id_opis" class="control-label col-md-4  requiredField"> Opis<span class="asteriskField">*</span> </label>
+                                <div class="controls col-md-8 ">
+                                    <input class="input-md textinput textInput form-control" id="id_opis" name="opis" value="@ViewBag.blanket.opis" style="margin-bottom: 10px" type="text" />
+                                </div>
+                            </div>
+
+                            <div id="div_id_fajl" class="form-group required">
+                                <label for="id_fajl" class="control-label col-md-4  requiredField"> Dokument<span class="asteriskField">*</span> </label>
+                                <div class="controls col-md-8 ">
+                                    <a href="~/Resources/@ViewBag.blanket.nazivFajla">@ViewBag.blanket.nazivFajla</a>
+                                </div>
+                            </div>
+
+
+                            <div id="div_id_dok" class="form-group required">
+                                <label for="id_dok" class="control-label col-md-4  requiredField"> Promenite dokument<span class="asteriskField">*</span> </label>
+                                <div class="controls col-md-8 ">
+                                    <input type="file" name="trenutniFajl" />
+                                </div>
+                            </div>
+
+                            <input data-val="true"
+                                   data-val-number="The field StudentId must be a number."
+                                   data-val-required="The StudentId field is required."
+                                   id="StudentId"
+                                   name="id"
+                                   type="hidden"
+                                   value="@ViewBag.blanket.id" />
+
+                            <div class="form-group">
+                                <div class="aab controls col-md-4 "></div>
+                                <div class="controls col-md-8 ">
+                                    <input type="submit" name="addBlanket" value="Azurirajte blanket" class="btn-info" id="submitBlanket" />
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+
+</body>
+</html>

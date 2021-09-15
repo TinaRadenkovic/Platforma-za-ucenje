@@ -1,0 +1,4 @@
+Mongodb Basics
+https://www.academia.edu/33925738/MongoDB_Basics (47 str za geospital)
+
+https://www.academia.edu/31940217/Modeling_and_Querying_Data_in_MongoDB (za komentare ima)

@@ -1,0 +1,147 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <!------ Include the above in your HEAD tag ---------->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Admin</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.css">
+
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <link href="~/Content/NewAdmin.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+
+
+
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top ">
+        <div class="container" id="mojNav">
+            <a class="navbar-brand" href="Home">Platforma za ucenje</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav navbar-right">
+                    <li class="nav-item active">
+                        <a href="https://localhost:44302/Admin" class="nav-link" mr-4>Pocetna </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://localhost:44302/Home">Izadji</a>
+                    </li>
+
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+  
+
+
+    <div class="container-fluid main-container">
+        <div class="col-md-2 sidebar">
+            <div class="row">
+                <!-- uncomment code for absolute positioning tweek see top comment in css -->
+                <div class="absolute-wrapper"> </div>
+                <!-- Menu -->
+                <div class="side-menu">
+                    <nav class="navbar navbar-default" role="navigation">
+                        <!-- Main Menu -->
+                        <div class="side-menu-container">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="#"><span class="glyphicon glyphicon-dashboard"></span> Poruke</a></li>
+                                <li><a href="https://localhost:44302/Admin/AdminBlanketi"><span class="fas fa-marker"></span> Blanketi</a></li>
+                                <li><a href="https://localhost:44302/Admin/AdminKnjige"><span class="fa fa-fw fa-book"></span> Knjige</a></li>
+                                <li><a href="https://localhost:44302/Admin/AdminPredavanja"><span class="fas fa-chalkboard"></span> Predavanja</a></li>
+                                <li><a href="https://localhost:44302/Admin/AdminKorisnici"><span class="fa fa-users"></span> Korisnici</a></li>
+                            </ul>
+                        </div><!-- /.navbar-collapse -->
+                    </nav>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10 content">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+
+                </div>
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="wrapper wrapper-content animated fadeInRight">
+
+                                <div class="ibox-content forum-container">
+
+                                    <div class="forum-title">
+                                        <div class="pull-right forum-desc">
+                                            <samll>Ukupan broj poruka: @ViewBag.brojPoruka</samll>
+                                        </div>
+                                        <h3 style="font-weight: bold;">Poruke</h3>
+                                    </div>
+
+                                    @foreach (var v in ViewBag.svePoruke)
+                                    {
+                                        <div style="padding-top: 9px; border-bottom: solid 1px;" class="forum-item">
+                                            <div class="row">
+                                                <div class="col-md-9">
+
+                                                    <div class="forum-sub-title">
+                                                        <div> Naslov: @v.naslov</div>
+                                                        <div>Email: @v.emailKorisnika</div>
+                                                        <div>Sadrzaj: @v.sadrzajPoruke</div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-1 forum-info">
+                                                    <span class="views-number">
+                                                        @v.vreme
+                                                    </span>
+
+                                                </div>
+
+                                                <div class="col-md-1 forum-info">
+                                                    <a href="https://mail.google.com/mail/u/1/#sent?compose=new"><span class="fa fa-google"></span></a>
+
+                                                </div>
+
+                                                <div class="col-md-1 forum-info">
+                                                    <a href="@Url.Action("DeletePoruka", "Admin", new {id = v.id})" onclick="return confirm(" Da li ste sigurni?")"><span class="glyphicon glyphicon-trash"></span></a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="pull-left footer">
+            <p class="col-md-12">
+
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

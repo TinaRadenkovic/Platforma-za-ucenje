@@ -1,0 +1,32 @@
+﻿body {
+    font-size: medium;
+}
+
+.klasaDiv {
+    padding-top: 4%;
+    font-size: medium;
+}
+
+#id_predmet {
+    font-size: medium;
+}
+
+#id_email {
+    font-size: medium;
+}
+
+#id_sadrzajPoruke {
+    font-size: medium;
+}
+
+#id_naslov {
+    font-size: medium;
+}
+
+.btn-info {
+    height: 10%;
+}
+
+a {
+    font-size: medium;
+}

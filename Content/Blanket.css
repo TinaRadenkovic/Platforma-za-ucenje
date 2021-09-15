@@ -1,0 +1,13 @@
+﻿.mytable
+{
+    padding-top: 10%;
+}
+.myclass{
+    padding-top: 20px;
+    padding-bottom: 20px;
+   display: flex;
+}
+.komentari{
+    padding-top: 5%;
+    width: 100%;
+}

@@ -1,0 +1,36 @@
+﻿body {
+    font-size: medium;
+}
+
+.klasaDiv {
+    padding-top: 4%;
+    font-size: medium;
+}
+
+#id_predmet {
+    font-size: medium;
+}
+
+#id_vreme {
+    font-size: medium;
+}
+
+#id_mesto {
+    font-size: medium;
+}
+
+#id_predavac {
+    font-size: medium;
+}
+
+#id_nazivFajla {
+    font-size: medium;
+}
+
+.btn-info {
+    height: 10%;
+}
+
+a {
+    font-size: medium;
+}
